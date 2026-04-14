@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap');
+
+:root {
+  --bg: #050505;
+  --bg2: #0d0d0d;
+  --bg3: #111111;
+  --accent: #E8FF3C;
+  --pink: #FF3C6E;
+  --blue: #3CAAFF;
+  --white: #F5F5F0;
+  --muted: #555;
+  --border: rgba(255,255,255,0.08);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 3px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb { background: var(--accent); }
+
+a { text-decoration: none; color: inherit; }
+button { font-family: 'Outfit', sans-serif; }
+img { display: block; max-width: 100%; }
