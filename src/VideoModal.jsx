@@ -18,6 +18,11 @@ export default function VideoModal({ item, onClose }) {
     return () => window.removeEventListener('keydown', handler)
   }, [onClose])
 
+  // Determine if modal should be vertical (portrait) for Reel and Event edits
+  const isVertical = item && (item.cat === 'Reel Edit' || item.cat === 'Event Edit')
+  const isReel = item && item.cat === 'Reel Edit'
+  const isEvent = item && item.cat === 'Event Edit'
+
   return (
     <div
       onClick={e => { if (e.target === e.currentTarget) onClose() }}
@@ -36,7 +41,8 @@ export default function VideoModal({ item, onClose }) {
         background: 'var(--bg3)',
         border: '1px solid rgba(255,255,255,0.1)',
         borderRadius: '6px',
-        width: '100%', maxWidth: '920px',
+        width: '100%',
+        maxWidth: isVertical ? '480px' : '920px',
         transform: open ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(24px)',
         transition: 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
         overflow: 'hidden',
@@ -47,7 +53,7 @@ export default function VideoModal({ item, onClose }) {
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           borderBottom: '1px solid var(--border)',
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
             <span style={{
               width: '8px', height: '8px', borderRadius: '50%',
               background: item?.platform === 'yt' ? '#ff0000' : 'var(--pink)',
@@ -75,8 +81,12 @@ export default function VideoModal({ item, onClose }) {
           >✕</button>
         </div>
 
-        {/* Embed */}
-        <div style={{ position: 'relative', paddingTop: '56.25%', background: '#000' }}>
+        {/* Embed - Vertical aspect ratio for Reels & Events, 16:9 for Videos */}
+        <div style={{ 
+          position: 'relative', 
+          paddingTop: isVertical ? '177.77%' : '56.25%', // 9:16 for vertical, 16:9 for horizontal
+          background: '#000' 
+        }}>
           {item && (
             <iframe
               key={item.embedUrl}

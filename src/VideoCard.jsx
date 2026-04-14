@@ -8,7 +8,6 @@ const styles = {
     cursor: 'pointer',
     background: 'var(--bg3)',
     border: '1px solid var(--border)',
-    aspectRatio: '16/10',
     transition: 'transform 0.3s cubic-bezier(0.4,0,0.2,1), border-color 0.3s, box-shadow 0.3s',
   },
   cardHover: {
@@ -57,13 +56,17 @@ const styles = {
   sub: { fontSize: '11px', color: 'var(--accent)', letterSpacing: '2px', textTransform: 'uppercase', marginTop: '4px', opacity: 0.8 },
 }
 
-export default function VideoCard({ item, onPlay }) {
+export default function VideoCard({ item, onPlay, isVertical = false }) {
   const [hovered, setHovered] = useState(false)
   const isYT = item.platform === 'yt'
 
   return (
     <div
-      style={{ ...styles.card, ...(hovered ? styles.cardHover : {}) }}
+      style={{ 
+        ...styles.card, 
+        aspectRatio: isVertical ? '9/16' : '16/10',
+        ...(hovered ? styles.cardHover : {})
+      }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       onClick={() => onPlay(item)}

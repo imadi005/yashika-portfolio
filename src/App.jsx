@@ -3,6 +3,7 @@ import VideoCard from './VideoCard'
 import VideoModal from './VideoModal'
 import { useInView } from './useInView'
 import { VIDEOS, REELS, EVENTS, SKILLS } from './data'
+import profilePic from './pp.jpeg'
 
 /* ─── FADE-UP WRAPPER ─── */
 function FadeUp({ children, delay = 0, style = {} }) {
@@ -118,7 +119,7 @@ function Hero() {
           </h1>
 
           <p style={{ fontSize: '13px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '28px', fontFamily: "'Space Mono', monospace", animation: 'fadeUp 0.8s 0.3s both' }}>
-            Video Editor · Motion Designer · A&M Production
+            Video Editor · Motion Designer ·
           </p>
 
           <p style={{ fontSize: '16px', lineHeight: 1.75, color: 'rgba(245,245,240,0.5)', maxWidth: '440px', marginBottom: '40px', animation: 'fadeUp 0.8s 0.4s both' }}>
@@ -155,15 +156,11 @@ function Hero() {
             <div style={{ position: 'absolute', top: '-14px', left: '-14px', right: '14px', bottom: '14px', border: '1px solid rgba(232,255,60,0.12)', borderRadius: '2px', pointerEvents: 'none' }} />
             <div style={{ width: '100%', height: '100%', borderRadius: '2px', overflow: 'hidden', border: '1px solid rgba(232,255,60,0.12)' }}>
               <img
-                src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=80"
+                src={profilePic}
                 alt="Yashika Agrawal"
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', filter: 'grayscale(15%) contrast(1.1)' }}
               />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 55%, rgba(5,5,5,0.75))' }} />
-            </div>
-            <div style={{ position: 'absolute', bottom: '-18px', right: '-18px', background: 'var(--bg3)', border: '1px solid var(--border)', padding: '14px 18px', borderRadius: '2px' }}>
-              <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', color: 'var(--accent)', display: 'block', lineHeight: 1 }}>A&M</span>
-              <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '2px', textTransform: 'uppercase' }}>Production</span>
             </div>
           </div>
         </div>
@@ -184,14 +181,33 @@ function Hero() {
 
 /* ─── WORK SECTION ─── */
 const TABS = [
-  { id: 'videos', label: '📹 Video Edits', data: VIDEOS },
-  { id: 'reels', label: '🎞 Reel Edits', data: REELS },
-  { id: 'events', label: '🎬 Event Edits', data: EVENTS },
+  { id: 'videos', label: '📹 Video Edits', data: VIDEOS, layout: 'grid' },
+  { id: 'reels', label: '🎞 Reel Edits', data: REELS, layout: 'vertical' },
+  { id: 'events', label: '🎬 Event Edits', data: EVENTS, layout: 'vertical' },
 ]
 
 function Work({ onPlay }) {
   const [activeTab, setActiveTab] = useState('videos')
   const current = TABS.find(t => t.id === activeTab)
+
+  // Different grid layouts based on tab
+  const getGridStyle = () => {
+    if (current.layout === 'vertical') {
+      return {
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, minmax(280px, 1fr))',
+        gap: '24px',
+        maxWidth: '1000px',
+        margin: '0 auto',
+        justifyContent: 'center',
+      }
+    }
+    return {
+      display: 'grid',
+      gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,300px), 1fr))',
+      gap: '20px',
+    }
+  }
 
   return (
     <section id="work" style={{ padding: 'clamp(70px,10vw,100px) clamp(20px,5vw,40px)', maxWidth: '1300px', margin: '0 auto' }}>
@@ -203,7 +219,7 @@ function Work({ onPlay }) {
 
       {/* Tabs */}
       <FadeUp delay={0.1}>
-        <div style={{ display: 'flex', gap: '6px', marginBottom: '48px', flexWrap: 'wrap' }}>
+        <div style={{ display: 'flex', gap: '6px', marginBottom: '48px', flexWrap: 'wrap', justifyContent: 'center' }}>
           {TABS.map(tab => (
             <button key={tab.id} onClick={() => setActiveTab(tab.id)} style={{
               padding: '10px 28px', background: activeTab === tab.id ? 'var(--accent)' : 'transparent',
@@ -220,11 +236,11 @@ function Work({ onPlay }) {
         </div>
       </FadeUp>
 
-      {/* Grid */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(min(100%,300px), 1fr))', gap: '20px' }}>
+      {/* Grid - Different layout for vertical tabs */}
+      <div style={getGridStyle()}>
         {current.data.map((item, i) => (
           <FadeUp key={`${activeTab}-${item.id}`} delay={i * 0.07}>
-            <VideoCard item={item} onPlay={onPlay} />
+            <VideoCard item={item} onPlay={onPlay} isVertical={current.layout === 'vertical'} />
           </FadeUp>
         ))}
       </div>
@@ -242,7 +258,7 @@ function About() {
           <div style={{ position: 'relative' }}>
             <div style={{ position: 'absolute', top: '-14px', left: '-14px', right: '14px', bottom: '14px', border: '1px solid rgba(232,255,60,0.12)', borderRadius: '2px' }} />
             <img
-              src="https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?w=700&q=80"
+              src= {profilePic}
               alt="Yashika"
               style={{ width: '100%', aspectRatio: '3/4', objectFit: 'cover', objectPosition: 'top', borderRadius: '2px', border: '1px solid var(--border)', filter: 'grayscale(10%) contrast(1.1)' }}
             />
@@ -254,7 +270,7 @@ function About() {
           <div style={{ fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent)', fontFamily: "'Space Mono', monospace", marginBottom: '12px' }}>— About Me</div>
           <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(38px,5vw,64px)', lineHeight: 1, marginBottom: '24px' }}>Behind<br />The Timeline</h2>
           <p style={{ color: 'rgba(245,245,240,0.5)', fontSize: '15px', lineHeight: 1.8, marginBottom: '16px' }}>
-            Creative and detail-oriented BCA student at <strong style={{ color: 'var(--accent)' }}>Birla Institute of Technology, Lalpur</strong>. Currently editing at <strong style={{ color: 'var(--accent)' }}>A &amp; M Production</strong> — crafting reels, ads, and short-form content that actually stops the scroll.
+            Creative and detail-oriented BCA student at <strong style={{ color: 'var(--accent)' }}>Birla Institute of Technology,Mesra</strong>. Currently editing at <strong style={{ color: 'var(--accent)' }}>A &amp; M Production</strong> — crafting reels, ads, and short-form content that actually stops the scroll.
           </p>
           <p style={{ color: 'rgba(245,245,240,0.5)', fontSize: '15px', lineHeight: 1.8, marginBottom: '32px' }}>
             Also serving as <strong style={{ color: 'var(--white)' }}>General Secretary</strong> of the CS Society — managing events with 300+ attendees and leading a team of 15. I bridge creative and technical worlds.
@@ -280,10 +296,9 @@ function About() {
 /* ─── CONTACT ─── */
 function Contact() {
   const links = [
-    { icon: '✉', label: 'Email', val: 'yashika.agrawal@email.com', href: 'mailto:yashika.agrawal@email.com' },
+    { icon: '✉', label: 'Email', val: 'agrawalyashika577@gmail.com', href: 'mailto:agrawalyashika577@gmail.com' },
     { icon: '📞', label: 'Phone', val: '+91 78580 74691', href: 'tel:+917858074691' },
-    { icon: '📸', label: 'Instagram Reels', val: 'View Reels on Instagram →', href: 'https://www.instagram.com/reel/DRcxZwXjWwg/' },
-    { icon: '🎬', label: 'Portfolio Drive', val: 'Full Portfolio on Google Drive →', href: 'https://drive.google.com/drive/folders/1Zj6nmpsyda6QJkfpQWJ0cruu2IQGMip-?usp=drive_link' },
+    { icon: '📸', label: 'Instagram Reels', val: 'View Reels on Instagram →', href: 'https://www.instagram.com/_yashiika_agrawal_/reels/' },
   ]
 
   return (
@@ -327,7 +342,7 @@ function Footer() {
   return (
     <footer style={{ padding: '32px clamp(20px,5vw,40px)', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
       <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '4px', color: 'var(--accent)' }}>YASHIKA AGRAWAL</span>
-      <span style={{ fontSize: '12px', color: 'var(--muted)' }}>© 2025 · Video Editor · A&M Production</span>
+      <span style={{ fontSize: '12px', color: 'var(--muted)' }}>© 2025 · Video Editor ·</span>
       <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Jharkhand, India</span>
     </footer>
   )
