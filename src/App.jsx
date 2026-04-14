@@ -119,7 +119,7 @@ function Hero() {
           </h1>
 
           <p style={{ fontSize: '13px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '28px', fontFamily: "'Space Mono', monospace", animation: 'fadeUp 0.8s 0.3s both' }}>
-            Video Editor · Motion Designer · A&M Production
+            Video Editor · Motion Designer ·
           </p>
 
           <p style={{ fontSize: '16px', lineHeight: 1.75, color: 'rgba(245,245,240,0.5)', maxWidth: '440px', marginBottom: '40px', animation: 'fadeUp 0.8s 0.4s both' }}>
@@ -161,10 +161,6 @@ function Hero() {
                 style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'top center', filter: 'grayscale(15%) contrast(1.1)' }}
               />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 55%, rgba(5,5,5,0.75))' }} />
-            </div>
-            <div style={{ position: 'absolute', bottom: '-18px', right: '-18px', background: 'var(--bg3)', border: '1px solid var(--border)', padding: '14px 18px', borderRadius: '2px' }}>
-              <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', color: 'var(--accent)', display: 'block', lineHeight: 1 }}>A&M</span>
-              <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '2px', textTransform: 'uppercase' }}>Production</span>
             </div>
           </div>
         </div>
@@ -346,7 +342,7 @@ function Footer() {
   return (
     <footer style={{ padding: '32px clamp(20px,5vw,40px)', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
       <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '4px', color: 'var(--accent)' }}>YASHIKA AGRAWAL</span>
-      <span style={{ fontSize: '12px', color: 'var(--muted)' }}>© 2025 · Video Editor · A&M Production</span>
+      <span style={{ fontSize: '12px', color: 'var(--muted)' }}>© 2025 · Video Editor ·</span>
       <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Jharkhand, India</span>
     </footer>
   )
