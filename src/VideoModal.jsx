@@ -20,8 +20,6 @@ export default function VideoModal({ item, onClose }) {
 
   // Determine if modal should be vertical (portrait) for Reel and Event edits
   const isVertical = item && (item.cat === 'Reel Edit' || item.cat === 'Event Edit')
-  const isReel = item && item.cat === 'Reel Edit'
-  const isEvent = item && item.cat === 'Event Edit'
 
   return (
     <div
@@ -43,15 +41,19 @@ export default function VideoModal({ item, onClose }) {
         borderRadius: '6px',
         width: '100%',
         maxWidth: isVertical ? '480px' : '920px',
+        maxHeight: '90vh',
         transform: open ? 'scale(1) translateY(0)' : 'scale(0.92) translateY(24px)',
         transition: 'transform 0.35s cubic-bezier(0.34,1.56,0.64,1)',
         overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
       }}>
         {/* Header */}
         <div style={{
           padding: '14px 20px',
           display: 'flex', alignItems: 'center', justifyContent: 'space-between',
           borderBottom: '1px solid var(--border)',
+          flexShrink: 0,
         }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: '12px', flexWrap: 'wrap' }}>
             <span style={{
@@ -84,8 +86,9 @@ export default function VideoModal({ item, onClose }) {
         {/* Embed - Vertical aspect ratio for Reels & Events, 16:9 for Videos */}
         <div style={{ 
           position: 'relative', 
-          paddingTop: isVertical ? '177.77%' : '56.25%', // 9:16 for vertical, 16:9 for horizontal
-          background: '#000' 
+          paddingTop: isVertical ? '177.77%' : '56.25%',
+          background: '#000',
+          flexShrink: 0,
         }}>
           {item && (
             <iframe

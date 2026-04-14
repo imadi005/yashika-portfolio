@@ -119,7 +119,7 @@ function Hero() {
           </h1>
 
           <p style={{ fontSize: '13px', letterSpacing: '5px', textTransform: 'uppercase', color: 'var(--muted)', marginBottom: '28px', fontFamily: "'Space Mono', monospace", animation: 'fadeUp 0.8s 0.3s both' }}>
-            Video Editor · Motion Designer ·
+            Video Editor · Motion Designer · A&M Production
           </p>
 
           <p style={{ fontSize: '16px', lineHeight: 1.75, color: 'rgba(245,245,240,0.5)', maxWidth: '440px', marginBottom: '40px', animation: 'fadeUp 0.8s 0.4s both' }}>
@@ -162,6 +162,10 @@ function Hero() {
               />
               <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 55%, rgba(5,5,5,0.75))' }} />
             </div>
+            <div style={{ position: 'absolute', bottom: '-18px', right: '-18px', background: 'var(--bg3)', border: '1px solid var(--border)', padding: '14px 18px', borderRadius: '2px' }}>
+              <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '28px', color: 'var(--accent)', display: 'block', lineHeight: 1 }}>A&M</span>
+              <span style={{ fontSize: '10px', color: 'var(--muted)', letterSpacing: '2px', textTransform: 'uppercase' }}>Production</span>
+            </div>
           </div>
         </div>
       </div>
@@ -195,7 +199,7 @@ function Work({ onPlay }) {
     if (current.layout === 'vertical') {
       return {
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))',
         gap: '24px',
         maxWidth: '1000px',
         margin: '0 auto',
@@ -210,7 +214,7 @@ function Work({ onPlay }) {
   }
 
   return (
-    <section id="work" style={{ padding: 'clamp(70px,10vw,100px) clamp(20px,5vw,40px)', maxWidth: '1300px', margin: '0 auto' }}>
+    <section id="work" style={{ padding: 'clamp(70px,10vw,100px) clamp(20px,5vw,40px)', maxWidth: '1300px', margin: '0 auto', overflowX: 'hidden' }}>
       <FadeUp>
         <div style={{ fontSize: '11px', letterSpacing: '4px', textTransform: 'uppercase', color: 'var(--accent)', fontFamily: "'Space Mono', monospace", marginBottom: '12px' }}>— Selected Work</div>
         <h2 style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: 'clamp(44px,7vw,80px)', lineHeight: 1, marginBottom: '14px' }}>The Reel Deal</h2>
@@ -298,7 +302,7 @@ function Contact() {
   const links = [
     { icon: '✉', label: 'Email', val: 'agrawalyashika577@gmail.com', href: 'mailto:agrawalyashika577@gmail.com' },
     { icon: '📞', label: 'Phone', val: '+91 78580 74691', href: 'tel:+917858074691' },
-    { icon: '📸', label: 'Instagram Reels', val: 'View Reels on Instagram →', href: 'https://www.instagram.com/_yashiika_agrawal_/reels/' },
+    { icon: '📸', label: 'Instagram Reels', val: 'View Reels on Instagram →', href: 'https://www.instagram.com/reel/DRcxZwXjWwg/' },
   ]
 
   return (
@@ -342,7 +346,7 @@ function Footer() {
   return (
     <footer style={{ padding: '32px clamp(20px,5vw,40px)', borderTop: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: '12px' }}>
       <span style={{ fontFamily: "'Bebas Neue', sans-serif", fontSize: '18px', letterSpacing: '4px', color: 'var(--accent)' }}>YASHIKA AGRAWAL</span>
-      <span style={{ fontSize: '12px', color: 'var(--muted)' }}>© 2025 · Video Editor ·</span>
+      <span style={{ fontSize: '12px', color: 'var(--muted)' }}>© 2025 · Video Editor · A&M Production</span>
       <span style={{ fontSize: '12px', color: 'var(--muted)' }}>Jharkhand, India</span>
     </footer>
   )
